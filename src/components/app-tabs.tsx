@@ -1,3 +1,4 @@
+
 import { NativeTabs } from 'expo-router/unstable-native-tabs';
 import { useColorScheme } from 'react-native';
 
@@ -11,7 +12,8 @@ export default function AppTabs() {
     <NativeTabs
       backgroundColor={colors.background}
       indicatorColor={colors.backgroundElement}
-      labelStyle={{ selected: { color: colors.text } }}>
+      labelStyle={{ selected: { color: colors.text } }}
+    >
       <NativeTabs.Trigger name="index">
         <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon
@@ -25,6 +27,30 @@ export default function AppTabs() {
         <NativeTabs.Trigger.Icon
           src={require('@/assets/images/tabIcons/explore.png')}
           renderingMode="template"
+        />
+      </NativeTabs.Trigger>
+
+      <NativeTabs.Trigger name="bookings">
+        <NativeTabs.Trigger.Label>My Bookings</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon
+          sf="ticket"
+          md="confirmation_number"
+        />
+      </NativeTabs.Trigger>
+
+      <NativeTabs.Trigger name="locations">
+        <NativeTabs.Trigger.Label>Locations</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon
+          sf="map"
+          md="location_on"
+        />
+      </NativeTabs.Trigger>
+
+      <NativeTabs.Trigger name="weather">
+        <NativeTabs.Trigger.Label>Weather</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon
+          sf="cloud.sun"
+          md="wb_cloudy"
         />
       </NativeTabs.Trigger>
     </NativeTabs>
