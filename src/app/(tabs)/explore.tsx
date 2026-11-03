@@ -1,3 +1,4 @@
+
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import {
@@ -84,7 +85,7 @@ export default function ExploreScreen() {
         <TextInput
           style={styles.searchInput}
           placeholder="Search events..."
-          placeholderTextColor="#888888"
+          placeholderTextColor="#8B7D81"
           value={searchText}
           onChangeText={setSearchText}
         />
@@ -108,6 +109,7 @@ export default function ExploreScreen() {
                 <Image
                   source={event.image}
                   style={styles.eventImage}
+                  resizeMode="cover"
                 />
 
                 <View style={styles.eventContent}>
@@ -153,7 +155,7 @@ export default function ExploreScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#FAF7F2',
   },
 
   scrollContent: {
@@ -163,34 +165,34 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 40,
-    fontWeight: '700',
-    color: '#111111',
+    fontSize: 36,
+    fontWeight: '800',
+    color: '#64152D',
     marginBottom: 14,
   },
 
   subtitle: {
-    fontSize: 22,
-    lineHeight: 30,
-    color: '#666666',
+    fontSize: 19,
+    lineHeight: 28,
+    color: '#74656A',
     marginBottom: 28,
   },
 
   searchInput: {
-    height: 58,
+    height: 56,
     borderWidth: 1,
-    borderColor: '#d0d0d0',
+    borderColor: '#D9AC55',
     borderRadius: 16,
     paddingHorizontal: 18,
-    fontSize: 18,
-    color: '#111111',
-    backgroundColor: '#f8f8f8',
+    fontSize: 16,
+    color: '#35121F',
+    backgroundColor: '#FFFFFF',
     marginBottom: 18,
   },
 
   resultsText: {
-    fontSize: 16,
-    color: '#666666',
+    fontSize: 15,
+    color: '#74656A',
     marginBottom: 22,
   },
 
@@ -199,69 +201,78 @@ const styles = StyleSheet.create({
   },
 
   eventCard: {
-    backgroundColor: '#f4f4f4',
+    backgroundColor: '#FFFFFF',
     borderRadius: 24,
     overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: '#E8E0D8',
   },
 
   eventCardPressed: {
-    opacity: 0.7,
+    opacity: 0.8,
   },
 
   eventImage: {
     width: '100%',
     height: 190,
+    backgroundColor: '#F0E4E7',
   },
 
   eventContent: {
-    padding: 28,
+    padding: 22,
   },
 
   eventTitle: {
-    fontSize: 28,
+    fontSize: 24,
+    lineHeight: 31,
     fontWeight: '700',
-    color: '#111111',
-    marginBottom: 22,
+    color: '#35121F',
+    marginBottom: 18,
   },
 
   eventInfo: {
-    fontSize: 20,
-    color: '#555555',
+    fontSize: 16,
+    color: '#59484E',
     marginBottom: 12,
   },
 
   eventDescription: {
-    fontSize: 19,
-    lineHeight: 28,
-    color: '#555555',
-    marginTop: 12,
+    fontSize: 16,
+    lineHeight: 25,
+    color: '#74656A',
+    marginTop: 10,
   },
 
   viewEvent: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#333333',
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#64152D',
     marginTop: 22,
+    paddingTop: 14,
+    borderTopWidth: 1,
+    borderTopColor: '#F0E4E7',
   },
 
   noResults: {
-    backgroundColor: '#f4f4f4',
+    backgroundColor: '#FFFFFF',
     borderRadius: 24,
     padding: 30,
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#E8E0D8',
   },
 
   noResultsTitle: {
     fontSize: 22,
     fontWeight: '700',
-    color: '#111111',
+    color: '#64152D',
     marginBottom: 10,
   },
 
   noResultsText: {
-    fontSize: 17,
+    fontSize: 16,
     lineHeight: 25,
-    color: '#666666',
+    color: '#74656A',
     textAlign: 'center',
   },
 });

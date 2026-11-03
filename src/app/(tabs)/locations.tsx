@@ -2,13 +2,13 @@
 import * as Location from 'expo-location';
 import { useEffect, useRef, useState } from 'react';
 import {
-    ActivityIndicator,
-    Alert,
-    Pressable,
-    ScrollView,
-    StyleSheet,
-    Text,
-    View,
+  ActivityIndicator,
+  Alert,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
 import { WebView } from 'react-native-webview';
 
@@ -175,6 +175,7 @@ export default function LocationsScreen() {
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.content}
+      showsVerticalScrollIndicator={false}
     >
       <Text style={styles.eyebrow}>DISCOVER PNG</Text>
       <Text style={styles.title}>Event Locations</Text>
@@ -213,8 +214,8 @@ export default function LocationsScreen() {
 
         {loading ? (
           <View style={styles.loadingRow}>
-            <ActivityIndicator color="#ffffff" />
-            <Text style={styles.buttonText}>Finding location...</Text>
+            <ActivityIndicator color="#64152D" />
+            <Text style={styles.loadingText}>Finding location...</Text>
           </View>
         ) : (
           <Pressable style={styles.button} onPress={findLocation}>
@@ -263,122 +264,175 @@ export default function LocationsScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#ffffff' },
-  content: { padding: 24, paddingTop: 35, paddingBottom: 50 },
+  container: {
+    flex: 1,
+    backgroundColor: '#FAF7F2',
+  },
+
+  content: {
+    padding: 24,
+    paddingTop: 35,
+    paddingBottom: 50,
+  },
+
   eyebrow: {
     fontSize: 13,
     fontWeight: '700',
     letterSpacing: 2,
-    color: '#777777',
+    color: '#A17A36',
     marginBottom: 10,
   },
-  title: { fontSize: 34, fontWeight: '800', color: '#111111' },
+
+  title: {
+    fontSize: 34,
+    fontWeight: '800',
+    color: '#64152D',
+  },
+
   subtitle: {
     fontSize: 16,
     lineHeight: 24,
-    color: '#666666',
+    color: '#74656A',
     marginTop: 10,
     marginBottom: 24,
   },
+
   sectionTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#111111',
+    color: '#64152D',
     marginBottom: 12,
   },
+
   mapContainer: {
     height: 300,
     overflow: 'hidden',
     borderRadius: 18,
-    borderWidth: 1,
-    borderColor: '#dddddd',
+    borderWidth: 2,
+    borderColor: '#D9AC55',
+    backgroundColor: '#F0E4E7',
   },
+
   mapNote: {
     fontSize: 12,
     lineHeight: 18,
-    color: '#666666',
+    color: '#74656A',
     marginTop: 10,
     marginBottom: 24,
   },
+
   card: {
-    backgroundColor: '#f4f4f4',
+    backgroundColor: '#64152D',
     padding: 24,
     borderRadius: 22,
     alignItems: 'flex-start',
   },
-  pin: { fontSize: 40, marginBottom: 15 },
+
+  pin: {
+    fontSize: 40,
+    marginBottom: 15,
+  },
+
   cardTitle: {
     fontSize: 22,
     fontWeight: '700',
-    color: '#111111',
+    color: '#FFFFFF',
     marginBottom: 12,
   },
+
   message: {
     fontSize: 15,
     lineHeight: 23,
-    color: '#555555',
+    color: '#F8EDEF',
     marginBottom: 22,
   },
+
   button: {
-    backgroundColor: '#111111',
+    backgroundColor: '#D9AC55',
     borderRadius: 12,
     paddingVertical: 16,
     paddingHorizontal: 20,
     alignItems: 'center',
     alignSelf: 'stretch',
   },
-  buttonText: { fontSize: 16, fontWeight: '700', color: '#ffffff' },
+
+  buttonText: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#35121F',
+  },
+
   loadingRow: {
     flexDirection: 'row',
     gap: 12,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#111111',
+    backgroundColor: '#D9AC55',
     borderRadius: 12,
     padding: 16,
     alignSelf: 'stretch',
   },
+
+  loadingText: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#35121F',
+  },
+
   resultCard: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: '#dddddd',
+    borderColor: '#E8E0D8',
     borderRadius: 20,
     padding: 22,
     marginTop: 22,
   },
+
   resultTitle: {
     fontSize: 21,
     fontWeight: '700',
-    color: '#111111',
+    color: '#64152D',
     marginBottom: 20,
   },
+
   coordinateLabel: {
     fontSize: 14,
-    color: '#777777',
+    color: '#74656A',
     marginBottom: 5,
   },
+
   coordinate: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#222222',
+    color: '#35121F',
     marginBottom: 16,
   },
-  accuracy: { fontSize: 13, color: '#666666', marginBottom: 20 },
+
+  accuracy: {
+    fontSize: 13,
+    color: '#74656A',
+    marginBottom: 20,
+  },
+
   secondaryButton: {
-    backgroundColor: '#eeeeee',
+    backgroundColor: '#F0E4E7',
     padding: 14,
     borderRadius: 10,
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#E8E0D8',
   },
+
   secondaryButtonText: {
-    color: '#222222',
+    color: '#64152D',
     fontSize: 15,
     fontWeight: '700',
   },
+
   note: {
     fontSize: 13,
     lineHeight: 20,
-    color: '#777777',
+    color: '#74656A',
     marginTop: 22,
   },
 });

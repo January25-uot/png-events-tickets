@@ -2,20 +2,20 @@
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
 import {
-    ActivityIndicator,
-    Alert,
-    Pressable,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    View,
+  ActivityIndicator,
+  Alert,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
 } from 'react-native';
 import {
-    Booking,
-    deleteBooking,
-    getMyBookings,
-    updateBooking,
+  Booking,
+  deleteBooking,
+  getMyBookings,
+  updateBooking,
 } from '../../services/bookings';
 
 export default function BookingsScreen() {
@@ -129,6 +129,7 @@ export default function BookingsScreen() {
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.content}
+      showsVerticalScrollIndicator={false}
     >
       <Text style={styles.title}>My Bookings</Text>
       <Text style={styles.subtitle}>
@@ -137,7 +138,7 @@ export default function BookingsScreen() {
 
       {loading ? (
         <View style={styles.center}>
-          <ActivityIndicator size="large" />
+          <ActivityIndicator size="large" color="#64152D" />
           <Text style={styles.message}>Loading your bookings...</Text>
         </View>
       ) : errorMessage ? (
@@ -169,75 +170,90 @@ export default function BookingsScreen() {
 
             return (
               <View key={booking.id} style={styles.card}>
-                <Text style={styles.eventTitle}>{eventName}</Text>
+                <View style={styles.cardAccent} />
 
-                <Text style={styles.detail}>📅 {eventDate}</Text>
-                <Text style={styles.detail}>📍 {location}</Text>
+                <View style={styles.cardContent}>
+                  <Text style={styles.eventTitle}>{eventName}</Text>
 
-                {editingId === booking.id ? (
-                  <View style={styles.editSection}>
-                    <Text style={styles.label}>Ticket quantity (1–10)</Text>
-                    <TextInput
-                      style={styles.input}
-                      value={editQuantity}
-                      onChangeText={setEditQuantity}
-                      keyboardType="number-pad"
-                      maxLength={2}
-                      editable={!isSaving}
-                    />
+                  <Text style={styles.detail}>📅 {eventDate}</Text>
+                  <Text style={styles.detail}>📍 {location}</Text>
 
-                    <View style={styles.actions}>
-                      <Pressable
-                        style={styles.button}
-                        onPress={() => saveQuantity(booking.id)}
-                        disabled={isSaving}
-                      >
-                        <Text style={styles.buttonText}>
-                          {isSaving ? 'Saving...' : 'Save'}
-                        </Text>
-                      </Pressable>
+                  {editingId === booking.id ? (
+                    <View style={styles.editSection}>
+                      <Text style={styles.label}>
+                        Ticket quantity (1–10)
+                      </Text>
+                      <TextInput
+                        style={styles.input}
+                        value={editQuantity}
+                        onChangeText={setEditQuantity}
+                        keyboardType="number-pad"
+                        maxLength={2}
+                        editable={!isSaving}
+                      />
 
-                      <Pressable
-                        style={styles.secondaryButton}
-                        onPress={() => setEditingId(null)}
-                        disabled={isSaving}
-                      >
-                        <Text style={styles.secondaryButtonText}>
-                          Cancel
-                        </Text>
-                      </Pressable>
+                      <View style={styles.actions}>
+                        <Pressable
+                          style={[
+                            styles.button,
+                            isSaving && styles.disabledButton,
+                          ]}
+                          onPress={() => saveQuantity(booking.id)}
+                          disabled={isSaving}
+                        >
+                          <Text style={styles.buttonText}>
+                            {isSaving ? 'Saving...' : 'Save'}
+                          </Text>
+                        </Pressable>
+
+                        <Pressable
+                          style={styles.secondaryButton}
+                          onPress={() => setEditingId(null)}
+                          disabled={isSaving}
+                        >
+                          <Text style={styles.secondaryButtonText}>
+                            Cancel
+                          </Text>
+                        </Pressable>
+                      </View>
                     </View>
-                  </View>
-                ) : (
-                  <>
-                    <Text style={styles.quantity}>
-                      Tickets: {booking.quantity}
-                    </Text>
-                    <Text style={styles.status}>
-                      Status: {booking.status}
-                    </Text>
+                  ) : (
+                    <>
+                      <Text style={styles.quantity}>
+                        Tickets: {booking.quantity}
+                      </Text>
+                      <Text style={styles.status}>
+                        Status: {booking.status}
+                      </Text>
 
-                    <View style={styles.actions}>
-                      <Pressable
-                        style={styles.button}
-                        onPress={() => startEditing(booking)}
-                        disabled={isSaving}
-                      >
-                        <Text style={styles.buttonText}>Edit</Text>
-                      </Pressable>
+                      <View style={styles.actions}>
+                        <Pressable
+                          style={[
+                            styles.button,
+                            isSaving && styles.disabledButton,
+                          ]}
+                          onPress={() => startEditing(booking)}
+                          disabled={isSaving}
+                        >
+                          <Text style={styles.buttonText}>Edit</Text>
+                        </Pressable>
 
-                      <Pressable
-                        style={styles.deleteButton}
-                        onPress={() => confirmDelete(booking)}
-                        disabled={isSaving}
-                      >
-                        <Text style={styles.buttonText}>
-                          {isSaving ? 'Please wait...' : 'Delete'}
-                        </Text>
-                      </Pressable>
-                    </View>
-                  </>
-                )}
+                        <Pressable
+                          style={[
+                            styles.deleteButton,
+                            isSaving && styles.disabledButton,
+                          ]}
+                          onPress={() => confirmDelete(booking)}
+                          disabled={isSaving}
+                        >
+                          <Text style={styles.buttonText}>
+                            {isSaving ? 'Please wait...' : 'Delete'}
+                          </Text>
+                        </Pressable>
+                      </View>
+                    </>
+                  )}
+                </View>
               </View>
             );
           })}
@@ -250,132 +266,172 @@ export default function BookingsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#FAF7F2',
   },
+
   content: {
     padding: 24,
     paddingTop: 35,
     paddingBottom: 50,
   },
+
   title: {
     fontSize: 34,
     fontWeight: '800',
-    color: '#111111',
+    color: '#64152D',
   },
+
   subtitle: {
     fontSize: 16,
     lineHeight: 24,
-    color: '#666666',
+    color: '#74656A',
     marginTop: 8,
     marginBottom: 28,
   },
+
   list: {
     gap: 18,
   },
+
   card: {
-    padding: 22,
     borderRadius: 20,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#FFFFFF',
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: '#E8E0D8',
   },
+
+  cardAccent: {
+    height: 5,
+    backgroundColor: '#D9AC55',
+  },
+
+  cardContent: {
+    padding: 22,
+  },
+
   eventTitle: {
     fontSize: 22,
     fontWeight: '700',
-    color: '#111111',
+    color: '#35121F',
     marginBottom: 15,
   },
+
   detail: {
     fontSize: 15,
-    color: '#555555',
+    color: '#59484E',
     marginBottom: 9,
   },
+
   quantity: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#222222',
+    color: '#64152D',
     marginTop: 12,
   },
+
   status: {
     fontSize: 14,
-    color: '#666666',
+    color: '#74656A',
     marginTop: 6,
   },
+
   label: {
     fontSize: 15,
     fontWeight: '600',
     marginBottom: 8,
-    color: '#333333',
+    color: '#35121F',
   },
+
   editSection: {
     marginTop: 18,
   },
+
   input: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: '#cccccc',
+    borderColor: '#D9AC55',
     borderRadius: 10,
     padding: 13,
     fontSize: 18,
-    color: '#111111',
+    color: '#35121F',
   },
+
   actions: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     gap: 10,
     marginTop: 18,
   },
+
   button: {
-    backgroundColor: '#111111',
+    backgroundColor: '#64152D',
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   buttonText: {
-    color: '#ffffff',
+    color: '#FFFFFF',
     fontSize: 15,
     fontWeight: '700',
   },
+
   secondaryButton: {
-    backgroundColor: '#e5e5e5',
+    backgroundColor: '#F0E4E7',
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   secondaryButtonText: {
-    color: '#333333',
+    color: '#64152D',
     fontSize: 15,
     fontWeight: '700',
   },
+
   deleteButton: {
-    backgroundColor: '#b42318',
+    backgroundColor: '#A52A35',
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
+
+  disabledButton: {
+    opacity: 0.6,
+  },
+
   center: {
     alignItems: 'center',
     paddingVertical: 50,
   },
+
   emptyCard: {
     padding: 25,
     borderRadius: 18,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#FFFFFF',
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#E8E0D8',
   },
+
   emptyTitle: {
     fontSize: 21,
     fontWeight: '700',
-    color: '#222222',
+    color: '#64152D',
     marginBottom: 8,
   },
+
   message: {
     fontSize: 15,
     lineHeight: 23,
-    color: '#666666',
+    color: '#74656A',
     textAlign: 'center',
     marginTop: 10,
   },

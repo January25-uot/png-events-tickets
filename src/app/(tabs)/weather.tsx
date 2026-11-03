@@ -157,6 +157,7 @@ export default function WeatherScreen() {
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.content}
+      showsVerticalScrollIndicator={false}
     >
       <Text style={styles.eyebrow}>DISCOVER PNG</Text>
       <Text style={styles.title}>Weather Forecast</Text>
@@ -190,7 +191,7 @@ export default function WeatherScreen() {
 
       {loading ? (
         <View style={styles.stateCard}>
-          <ActivityIndicator size="large" color="#111111" />
+          <ActivityIndicator size="large" color="#64152D" />
           <Text style={styles.stateText}>Loading weather...</Text>
         </View>
       ) : error ? (
@@ -301,86 +302,259 @@ export default function WeatherScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#ffffff' },
-  content: { padding: 24, paddingTop: 35, paddingBottom: 50 },
+  container: {
+    flex: 1,
+    backgroundColor: '#FAF7F2',
+  },
+
+  content: {
+    padding: 24,
+    paddingTop: 35,
+    paddingBottom: 50,
+  },
+
   eyebrow: {
-    fontSize: 13, fontWeight: '700', letterSpacing: 2,
-    color: '#777777', marginBottom: 10,
+    fontSize: 13,
+    fontWeight: '700',
+    letterSpacing: 2,
+    color: '#A17A36',
+    marginBottom: 10,
   },
-  title: { fontSize: 32, fontWeight: '800', color: '#111111' },
+
+  title: {
+    fontSize: 32,
+    fontWeight: '800',
+    color: '#64152D',
+  },
+
   subtitle: {
-    fontSize: 16, lineHeight: 24, color: '#666666',
-    marginTop: 10, marginBottom: 24,
+    fontSize: 16,
+    lineHeight: 24,
+    color: '#74656A',
+    marginTop: 10,
+    marginBottom: 24,
   },
+
   sectionTitle: {
-    fontSize: 20, fontWeight: '700', color: '#111111',
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#64152D',
     marginBottom: 12,
   },
+
   placeRow: {
-    flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 22,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+    marginBottom: 22,
   },
+
   placeButton: {
-    borderWidth: 1, borderColor: '#dddddd', borderRadius: 20,
-    paddingVertical: 10, paddingHorizontal: 12,
+    borderWidth: 1,
+    borderColor: '#E8E0D8',
+    borderRadius: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    backgroundColor: '#FFFFFF',
   },
-  selectedPlace: { backgroundColor: '#111111', borderColor: '#111111' },
-  placeText: { fontSize: 13, fontWeight: '600', color: '#333333' },
-  selectedPlaceText: { color: '#ffffff' },
+
+  selectedPlace: {
+    backgroundColor: '#64152D',
+    borderColor: '#D9AC55',
+  },
+
+  placeText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#59484E',
+  },
+
+  selectedPlaceText: {
+    color: '#FFFFFF',
+  },
+
   currentCard: {
-    backgroundColor: '#f3f5f7', borderRadius: 24, padding: 24,
-    alignItems: 'center', marginBottom: 24,
+    backgroundColor: '#64152D',
+    borderRadius: 24,
+    padding: 24,
+    alignItems: 'center',
+    marginBottom: 24,
+    borderWidth: 1,
+    borderColor: '#D9AC55',
   },
-  currentPlace: { fontSize: 18, fontWeight: '700', color: '#444444' },
-  currentEmoji: { fontSize: 58, marginTop: 12 },
-  temperature: {
-    fontSize: 54, fontWeight: '800', color: '#111111', marginTop: 4,
+
+  currentPlace: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#F0D9A3',
   },
-  description: { fontSize: 18, fontWeight: '600', color: '#333333' },
-  feelsLike: { fontSize: 14, color: '#666666', marginTop: 8 },
-  metricsRow: {
-    flexDirection: 'row', alignSelf: 'stretch', marginTop: 26,
-    paddingTop: 20, borderTopWidth: 1, borderTopColor: '#dddddd',
-  },
-  metric: { flex: 1, alignItems: 'center' },
-  metricIcon: { fontSize: 22 },
-  metricValue: {
-    fontSize: 16, fontWeight: '700', color: '#222222', marginTop: 6,
-  },
-  metricLabel: { fontSize: 13, color: '#666666', marginTop: 4 },
-  forecastCard: {
-    borderWidth: 1, borderColor: '#e5e5e5', borderRadius: 20, padding: 16,
-  },
-  forecastRow: {
-    flexDirection: 'row', alignItems: 'center', paddingVertical: 14,
-    borderBottomWidth: 1, borderBottomColor: '#eeeeee', gap: 8,
-  },
-  forecastDay: {
-    width: 48, fontSize: 13, fontWeight: '700', color: '#333333',
-  },
-  forecastEmoji: { fontSize: 22 },
-  forecastDescription: { flex: 1, fontSize: 12, color: '#666666' },
-  forecastTemps: { fontSize: 12, fontWeight: '700', color: '#222222' },
-  updated: {
-    fontSize: 12, color: '#777777', marginTop: 16, marginBottom: 14,
-  },
-  stateCard: {
-    alignItems: 'center', backgroundColor: '#f4f4f4',
-    borderRadius: 20, padding: 24, gap: 14,
-  },
-  stateEmoji: { fontSize: 42 },
-  stateTitle: { fontSize: 20, fontWeight: '700', color: '#111111' },
-  stateText: {
-    fontSize: 15, lineHeight: 22, color: '#555555', textAlign: 'center',
-  },
-  offlineCard: {
-    backgroundColor: '#fff3cd', borderRadius: 12, padding: 14, marginBottom: 16,
-  },
-  offlineText: { fontSize: 13, lineHeight: 19, color: '#664d03' },
-  button: {
-    backgroundColor: '#111111', borderRadius: 12, paddingVertical: 15,
-    paddingHorizontal: 20, alignItems: 'center', alignSelf: 'stretch',
+
+  currentEmoji: {
+    fontSize: 58,
     marginTop: 12,
   },
-  buttonText: { fontSize: 16, fontWeight: '700', color: '#ffffff' },
-  note: { fontSize: 12, lineHeight: 18, color: '#777777', marginTop: 24 },
+
+  temperature: {
+    fontSize: 54,
+    fontWeight: '800',
+    color: '#FFFFFF',
+    marginTop: 4,
+  },
+
+  description: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#F8EDEF',
+  },
+
+  feelsLike: {
+    fontSize: 14,
+    color: '#F0D9A3',
+    marginTop: 8,
+  },
+
+  metricsRow: {
+    flexDirection: 'row',
+    alignSelf: 'stretch',
+    marginTop: 26,
+    paddingTop: 20,
+    borderTopWidth: 1,
+    borderTopColor: '#8B5365',
+  },
+
+  metric: {
+    flex: 1,
+    alignItems: 'center',
+  },
+
+  metricIcon: {
+    fontSize: 22,
+  },
+
+  metricValue: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#FFFFFF',
+    marginTop: 6,
+  },
+
+  metricLabel: {
+    fontSize: 13,
+    color: '#F0D9A3',
+    marginTop: 4,
+  },
+
+  forecastCard: {
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#E8E0D8',
+    borderRadius: 20,
+    padding: 16,
+  },
+
+  forecastRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 14,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F0E4E7',
+    gap: 8,
+  },
+
+  forecastDay: {
+    width: 48,
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#64152D',
+  },
+
+  forecastEmoji: {
+    fontSize: 22,
+  },
+
+  forecastDescription: {
+    flex: 1,
+    fontSize: 12,
+    color: '#74656A',
+  },
+
+  forecastTemps: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#35121F',
+  },
+
+  updated: {
+    fontSize: 12,
+    color: '#74656A',
+    marginTop: 16,
+    marginBottom: 14,
+  },
+
+  stateCard: {
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 20,
+    padding: 24,
+    gap: 14,
+    borderWidth: 1,
+    borderColor: '#E8E0D8',
+  },
+
+  stateEmoji: {
+    fontSize: 42,
+  },
+
+  stateTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#64152D',
+  },
+
+  stateText: {
+    fontSize: 15,
+    lineHeight: 22,
+    color: '#59484E',
+    textAlign: 'center',
+  },
+
+  offlineCard: {
+    backgroundColor: '#FFF4D6',
+    borderWidth: 1,
+    borderColor: '#D9AC55',
+    borderRadius: 12,
+    padding: 14,
+    marginBottom: 16,
+  },
+
+  offlineText: {
+    fontSize: 13,
+    lineHeight: 19,
+    color: '#664D03',
+  },
+
+  button: {
+    backgroundColor: '#64152D',
+    borderWidth: 1,
+    borderColor: '#D9AC55',
+    borderRadius: 12,
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    marginTop: 12,
+  },
+
+  buttonText: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#FFFFFF',
+  },
+
+  note: {
+    fontSize: 12,
+    lineHeight: 18,
+    color: '#74656A',
+    marginTop: 24,
+  },
 });

@@ -1,3 +1,4 @@
+
 import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import {
@@ -137,7 +138,10 @@ export default function HomeScreen() {
         {/* Loading */}
         {loading ? (
           <View style={styles.loadingContainer}>
-            <ActivityIndicator size="large" />
+            <ActivityIndicator
+              size="large"
+              color="#64152D"
+            />
 
             <Text style={styles.message}>
               Loading events...
@@ -165,17 +169,19 @@ export default function HomeScreen() {
                 onPress={() => openEvent(event)}
               >
                 {event.image_url ? (
-  <Image
-    source={{ uri: event.image_url }}
-    style={styles.imagePlaceholder}
-    resizeMode="cover"
-  />
-) : (
-  <View style={styles.imagePlaceholder}>
-    <Text style={styles.imageIcon}>🎟️</Text>
-    <Text style={styles.imageText}>PNG EVENT</Text>
-  </View>
-)}
+                  <Image
+                    source={{ uri: event.image_url }}
+                    style={styles.imagePlaceholder}
+                    resizeMode="cover"
+                  />
+                ) : (
+                  <View style={styles.imagePlaceholder}>
+                    <Text style={styles.imageIcon}>🎟️</Text>
+                    <Text style={styles.imageText}>
+                      PNG EVENT
+                    </Text>
+                  </View>
+                )}
 
                 <View style={styles.cardContent}>
                   <Text style={styles.eventTitle}>
@@ -242,7 +248,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#FAF7F2',
   },
 
   content: {
@@ -253,6 +259,10 @@ const styles = StyleSheet.create({
 
   header: {
     marginBottom: 45,
+    padding: 22,
+    paddingTop: 24,
+    borderRadius: 24,
+    backgroundColor: '#64152D',
   },
 
   logoutButton: {
@@ -260,36 +270,36 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 14,
     borderRadius: 10,
-    backgroundColor: '#f0f0f0',
-    marginBottom: 20,
+    backgroundColor: '#D9AC55',
+    marginBottom: 24,
   },
 
   logoutButtonText: {
     fontSize: 14,
     fontWeight: '700',
-    color: '#333333',
+    color: '#35121F',
   },
 
   smallHeading: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: '700',
     letterSpacing: 2,
-    color: '#777777',
+    color: '#F0D9A3',
     marginBottom: 10,
   },
 
   title: {
-    fontSize: 38,
-    lineHeight: 45,
+    fontSize: 34,
+    lineHeight: 41,
     fontWeight: '800',
-    color: '#111111',
+    color: '#FFFFFF',
     marginBottom: 14,
   },
 
   subtitle: {
-    fontSize: 18,
-    lineHeight: 27,
-    color: '#666666',
+    fontSize: 17,
+    lineHeight: 26,
+    color: '#F8EDEF',
     maxWidth: 360,
   },
 
@@ -301,14 +311,14 @@ const styles = StyleSheet.create({
   },
 
   heading: {
-    fontSize: 25,
+    fontSize: 24,
     fontWeight: '700',
-    color: '#111111',
+    color: '#64152D',
   },
 
   eventCount: {
-    fontSize: 15,
-    color: '#777777',
+    fontSize: 14,
+    color: '#74656A',
   },
 
   eventsContainer: {
@@ -316,18 +326,20 @@ const styles = StyleSheet.create({
   },
 
   card: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#FFFFFF',
     borderRadius: 24,
     overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: '#E8E0D8',
   },
 
   cardPressed: {
-    opacity: 0.75,
+    opacity: 0.8,
   },
 
   imagePlaceholder: {
     height: 150,
-    backgroundColor: '#e8e8e8',
+    backgroundColor: '#F0E4E7',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -341,7 +353,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '700',
     letterSpacing: 2,
-    color: '#777777',
+    color: '#64152D',
   },
 
   cardContent: {
@@ -349,10 +361,10 @@ const styles = StyleSheet.create({
   },
 
   eventTitle: {
-    fontSize: 24,
+    fontSize: 23,
     lineHeight: 30,
     fontWeight: '700',
-    color: '#111111',
+    color: '#35121F',
     marginBottom: 18,
   },
 
@@ -369,18 +381,19 @@ const styles = StyleSheet.create({
 
   eventDate: {
     fontSize: 16,
-    color: '#555555',
+    color: '#59484E',
   },
 
   location: {
+    flex: 1,
     fontSize: 16,
-    color: '#555555',
+    color: '#59484E',
   },
 
   description: {
-    fontSize: 16,
+    fontSize: 15,
     lineHeight: 23,
-    color: '#666666',
+    color: '#74656A',
     marginTop: 10,
   },
 
@@ -388,19 +401,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 20,
+    paddingTop: 14,
+    borderTopWidth: 1,
+    borderTopColor: '#F0E4E7',
   },
 
   viewEvent: {
-    fontSize: 17,
+    fontSize: 16,
     fontWeight: '700',
-    color: '#111111',
+    color: '#64152D',
   },
 
   arrow: {
     fontSize: 22,
     fontWeight: '700',
     marginLeft: 8,
-    color: '#111111',
+    color: '#D9AC55',
   },
 
   loadingContainer: {
@@ -410,7 +426,7 @@ const styles = StyleSheet.create({
 
   message: {
     fontSize: 16,
-    color: '#777777',
+    color: '#74656A',
     marginTop: 15,
     textAlign: 'center',
   },
@@ -418,21 +434,27 @@ const styles = StyleSheet.create({
   emptyContainer: {
     alignItems: 'center',
     paddingVertical: 50,
+    paddingHorizontal: 20,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#E8E0D8',
   },
 
   emptyTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#333333',
+    color: '#64152D',
   },
 
   footer: {
     alignItems: 'center',
     marginTop: 35,
+    padding: 16,
   },
 
   footerText: {
     fontSize: 15,
-    color: '#888888',
+    color: '#74656A',
   },
 });
