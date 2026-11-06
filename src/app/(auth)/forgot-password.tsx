@@ -1,17 +1,18 @@
+
 import { supabase } from '@/lib/supabase';
 import { Link } from 'expo-router';
 import { useState } from 'react';
 import {
-    ActivityIndicator,
-    Alert,
-    KeyboardAvoidingView,
-    Platform,
-    Pressable,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    View,
+  ActivityIndicator,
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
 } from 'react-native';
 
 export default function ForgotPasswordScreen() {
@@ -70,7 +71,7 @@ export default function ForgotPasswordScreen() {
           <TextInput
             style={styles.input}
             placeholder="Enter your email"
-            placeholderTextColor="#999"
+            placeholderTextColor="#A69A9D"
             value={email}
             onChangeText={setEmail}
             keyboardType="email-address"
@@ -87,7 +88,7 @@ export default function ForgotPasswordScreen() {
             disabled={loading}
           >
             {loading ? (
-              <ActivityIndicator color="#fff" />
+              <ActivityIndicator color="#FFFFFF" />
             ) : (
               <Text style={styles.resetButtonText}>
                 Send Reset Instructions
@@ -113,7 +114,7 @@ export default function ForgotPasswordScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#FAF7F2',
   },
 
   content: {
@@ -129,42 +130,49 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     fontWeight: '700',
-    color: '#111',
+    color: '#64152D',
     marginBottom: 10,
   },
 
   subtitle: {
     fontSize: 16,
-    color: '#666',
+    color: '#74656A',
     lineHeight: 24,
   },
 
   form: {
     width: '100%',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 18,
+    padding: 20,
+    borderWidth: 1,
+    borderColor: '#E8E0D8',
   },
 
   label: {
     fontSize: 15,
     fontWeight: '600',
-    color: '#333',
+    color: '#35121F',
     marginBottom: 8,
   },
 
   input: {
     height: 52,
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: '#E8E0D8',
     borderRadius: 12,
     paddingHorizontal: 16,
     fontSize: 16,
-    color: '#111',
-    backgroundColor: '#fafafa',
+    color: '#35121F',
+    backgroundColor: '#FFFFFF',
   },
 
   resetButton: {
-    height: 52,
+    height: 54,
     borderRadius: 12,
-    backgroundColor: '#007AFF',
+    backgroundColor: '#64152D',
+    borderWidth: 1,
+    borderColor: '#D9AC55',
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 24,
@@ -175,7 +183,7 @@ const styles = StyleSheet.create({
   },
 
   resetButtonText: {
-    color: '#fff',
+    color: '#FFFFFF',
     fontSize: 17,
     fontWeight: '700',
   },
@@ -188,6 +196,6 @@ const styles = StyleSheet.create({
   loginText: {
     fontSize: 15,
     fontWeight: '700',
-    color: '#007AFF',
+    color: '#64152D',
   },
 });
